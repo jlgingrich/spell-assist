@@ -1,6 +1,6 @@
 <?php
+	echo "Hello!"
 	$db = mysqli_connect(HOSTNAME,USERNAME,PASSWORD,DATABASE);
-	echo $db
 
 	// Check connection
 	if (mysqli_connect_errno()) {
