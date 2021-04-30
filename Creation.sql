@@ -1,10 +1,10 @@
 CREATE SCHEMA IF NOT EXISTS spell_assist;
 USE spell_assist;
-START TRANSACTION;
 
-/*      CREATE TABLES      */
+/*      CREATE STATIC TABLES      */
 
 -- Prebuild Components table (STATIC)
+START TRANSACTION;
 CREATE TABLE IF NOT EXISTS Components (
 	componentname CHAR(8) NOT NULL UNIQUE, 
     abbreviation CHAR(1) PRIMARY KEY
@@ -13,8 +13,10 @@ INSERT INTO Components VALUES ('Verbal', 'V');
 INSERT INTO Components VALUES ('Somatic', 'S');
 INSERT INTO Components VALUES ('Material', 'M');
 SELECT * FROM Components;
+COMMIT;
 
 -- Prebuild Levels table (STATIC)
+START TRANSACTION;
 CREATE TABLE IF NOT EXISTS Levels (
 	levelname CHAR(9) NOT NULL UNIQUE,
     abbreviation CHAR(1) PRIMARY KEY
@@ -30,8 +32,10 @@ INSERT INTO Levels VALUES ('7th-level', '7');
 INSERT INTO Levels VALUES ('8th-level', '8');
 INSERT INTO Levels VALUES ('9th-level', '9');
 SELECT * FROM Levels;
+COMMIT;
 
 -- Prebuild Schools table (STATIC)
+START TRANSACTION;
 CREATE TABLE IF NOT EXISTS Schools (
 	schoolname CHAR(13) NOT NULL UNIQUE,
     abbreviation CHAR(1) PRIMARY KEY
@@ -45,6 +49,18 @@ INSERT INTO Schools VALUES ('Illusion', 'I');
 INSERT INTO Schools VALUES ('Necomancy', 'N');
 INSERT INTO Schools VALUES ('Transmutation', 'T');
 SELECT * FROM Schools;
+COMMIT;
+
+/*   CREATE DYNAMIC TABLES   */
+START TRANSACTION;
+
+-- Define Users table (DYNAMIC)
+CREATE TABLE IF NOT EXISTS Users (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 -- Define Spells table (DYNAMIC)
 CREATE TABLE IF NOT EXISTS Spells (
@@ -72,15 +88,15 @@ CREATE TABLE IF NOT EXISTS Descriptions (
 CREATE TABLE IF NOT EXISTS Characters (
 	characterid INT PRIMARY KEY AUTO_INCREMENT,
     charactername VARCHAR(64) NOT NULL,
-    playername VARCHAR(64) NOT NULL,
-    class VARCHAR(10)
+    username VARCHAR(50) NOT NULL REFERENCES Users(username)
 );
 
 
--- Define KnownSpells table (DYNAMIC)
-CREATE TABLE IF NOT EXISTS KnownSpell (
+-- Define HasSpell table (DYNAMIC)
+CREATE TABLE IF NOT EXISTS HasSpell (
 	characterid INT NOT NULL REFERENCES Characters(characterid),
     spellname VARCHAR(26) NOT NULL REFERENCES Spells(spellname),
+    castingclass VARCHAR(10),
     prepared BOOLEAN,
     alwaysprepared BOOLEAN,
     PRIMARY KEY (characterid, spellname)
