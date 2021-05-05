@@ -1,3 +1,14 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: app-home.php");
+    exit;
+}
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
 <head>
@@ -7,21 +18,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"><!doctype html>
-    <title>Spell Assist - Importing/Exporting</title>
+    <title>Spell Assist - 5E D&D Spell Management</title>
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       .bg-img {
-        background-image: url("images/background-top.png");
+        background-image: url("images/background-full.png");
 
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-     }
-
-     ol {
-        text-align: left;
      }
     </style>
     <link href="cover.css" rel="stylesheet">
@@ -29,31 +36,32 @@
 <body class="d-flex h-100 text-center text-white bg-img">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-          <header class="mb-5">
+          <header class="mb-auto">
                 <div>
                   <img src="images/sa-title-small.png">
                   <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="">Home</a>
                         <a class="nav-link" href="login.php">Sign In</a>
-                        <a class="nav-link active" aria-current="page" href="">Importing/Exporting</a>
+                        <a class="nav-link" href="info.html">Importing/Exporting</a>
                         <a class="nav-link" href="faq.html">FAQ</a>
                   </nav>
                 </div>
           </header>
 
+          <img src="images/sa-title.png">
+
           <main class="px-3">
-                <h1>Importing and Exporting</h1>
-                <h3>Importing Spells from 5eTools</h3>
-                  <ol>
-                    <li>Travel to the Spells page on <a href="https://5e.tools/spells.html" target="_blank">5eTools</a>.</li>
-                    <li>Locate the spells you want to import and add them to the pinned list by right-clicking on a spell and pressing "Pin".</li>
-                    <li>Once you've assembled the list of spells to import, right-click on any spell in the pinned list, press "Download JSON Data", and save the JSON file to somewhere easily retrieveable.</li>
-                    <li>Sign in to Spell Assist and navigate to the Import/Export page.</li>
-                  </ol>
-                <h3>Exporting Spell Lists</h3>
-                  <ol>
-                    <li></li>
-                  </ol>
+                <h1>Losing track of your spells?</h1>
+                <h1>Too many tabs open?</h1>
+                <p class="lead">
+					Pen and paper role-playing games are fun, but sometimes keeping track of the skills and abilities your character has can be a hassle.
+					Spell Assist provides a simple and powerful solution to one facet of the problem: spells.
+					Now you can keep track of your characters' spell lists and cast quickly and easily!
+				<a href="register.php" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Join!</a>
+                </p>
           </main>
+
+          <footer class="mt-auto text-white-50"/>
         </div>
 </body>
+</html>

@@ -1,18 +1,4 @@
 <?php
-// Initialize the session
-session_start();
-
-// Unset all of the session variables
-$_SESSION = array();
-
-// Destroy the session.
-session_destroy();
-
-// Redirect to login page
-header("location: login.php");
-exit;
-?>root@ubuntu-s-1vcpu-1gb-nyc1-01:/var/www/html# cat register.php
-<?php
 // Include config file
 require_once "config.php";
 
@@ -112,35 +98,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        .bg-img {
+         background-image: url("images/background-top.png");
+         height: 100%;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+       }
+
+       ol {
+         text-align: left;
+       }
+
+        .wrapper{padding: 20px!important}
     </style>
+    <link href="cover.css" rel="stylesheet">
 </head>
-<body>
-    <div class="wrapper">
+<body class="d-flex h-100 text-center text-white bg-img">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column wrapper">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
+            <div class="form-group margin-bottom">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>
-            <div class="form-group">
+            <div class="form-group margin-bottom">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
-            <div class="form-group">
+            <div class="form-group margin-bottom">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
                 <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+            <div class="form-group margin-bottom">
+                <input type="submit" class="btn btn-lg btn-secondary fw-bold border-white" value="Submit">
+                <input type="reset" class="btn btn-lg btn-secondary fw-bold border-white" value="Reset">
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
