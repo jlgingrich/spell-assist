@@ -97,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>SpellAssist - Sign Up</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
     <style>
         .bg-img {
@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
     <link href="cover.css" rel="stylesheet">
 </head>
-<body class="d-flex h-100 text-center text-white bg-img">
+<body class="d-flex h-100 text-center text-white">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column wrapper">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>

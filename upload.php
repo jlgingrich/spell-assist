@@ -15,7 +15,7 @@ if (basename($_FILES["fileToUpload"]["name"]) == "spells-sublist-data.json") {
 $strJsonFileContents = file_get_contents("uploads/spells-sublist-data.json");
 $entries = json_decode($strJsonFileContents); // Parse JSON
 
-$sql = "INSERT INTO Spells (spellname, lvl, school, verbal, somatic, concentration, ritual) VALUES (?, ?, ?, ?, ?, ?, ?);";
+$sql = "INSERT IGNORE INTO Spells (spellname, lvl, school, verbal, somatic, concentration, ritual) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 foreach ($entries as $key => $value) {
 	if($stmt = mysqli_prepare($link, $sql)){
@@ -53,5 +53,6 @@ foreach ($entries as $key => $value) {
 	}
 }
 
+unlink("uploads/spells-sublist-data.json");
 header("location: app-home.php");
 ?>

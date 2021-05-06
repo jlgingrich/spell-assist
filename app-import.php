@@ -36,15 +36,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column wrapper">
         <h2>Upload Spell Data</h2>
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            <p>Select image to upload:</p>
+            <p>Select JSON file to upload:</p>
 			<div class="form-group margin-bottom">
-				<input class="btn btn-lg btn-secondary fw-bold border-white" type="file" name="fileToUpload" id="fileToUpload">
+				<input class="btn btn-lg btn-secondary fw-bold border-white" type="file" accept=".json" name="fileToUpload" id="fileToUpload">
 			</div>
 			<div class="form-group margin-bottom">
-				<input class="btn btn-lg btn-secondary fw-bold border-white" type="submit" value="Upload Image" name="submit">
+				<input class="btn btn-lg btn-secondary fw-bold border-white" type="submit" value="Upload" name="submit">
 			</div>
 			<p>See <a href="info.php">Importing/Exporting</a> for additional help, or <a href="app-home.php">go back</a>.</p>
         </form>
     </div>
 </body>
-</html>
+

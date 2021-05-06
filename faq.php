@@ -37,22 +37,26 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 </head>
 <body class="d-flex h-100 text-center text-white bg-img">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-          <header class="mb-5">
-                <div>
-                  <img src="images/sa-title-small.png">
-                  <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link" href="index.php">Home</a>
-                        <?php if ($signedin == true): ?>
-							<a class="nav-link" href="logout.php">Sign Out</a>
-						<?php else: ?>
-							<a class="nav-link" href="login.php">Sign In</a>
-						<?php endif ?>
-                        <a class="nav-link" href="info.php">Importing/Exporting</a>
-                        <a class="nav-link active" aria-current="page" href="">FAQ</a>
-                  </nav>
-                </div>
-          </header>
+        <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+          <header class="sticky-top py-3">
+                  <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 1fr;">
+                      <div>
+                           <img class="nav" src="images/sa-title-small.png">
+                      </div>
+                      <nav class="d-flex align-items-center nav nav-masthead" style="justify-self: end;">
+                           <a class="nav-link" href="app-home.php">Home</a>
+                           <?php if ($signedin == true): ?>
+                              <a class="nav-link" href="logout.php">Sign Out</a>
+                           <?php else: ?>
+                              <a class="nav-link" href="login.php">Sign In</a>
+                           <?php endif ?>
+                           <a class="nav-link" href="info.php">Importing/Exporting</a>
+                           <a class="nav-link active" aria-current="page" href="faq.php">FAQ</a>
+                      </nav>
+                  </div>
+             </header>
+            <br/>
+            <br/>
 
           <main class="px-3">
                 <h1>FAQ</h1>
@@ -67,3 +71,4 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
           </main>
         </div>
 </body>
+</html>
